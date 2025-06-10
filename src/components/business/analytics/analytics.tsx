@@ -105,7 +105,7 @@ const AnimatedProgress = ({ value, className }: { value: number; className?: str
   return <Progress value={progress} className={className} />
 }
 
-export default function AnalyticsPage() {
+export default function AnalyticPage() {
   const [loading, setLoading] = useState(true)
   const [analyticsData, setAnalyticsData] = useState<AnalyticsData | null>(null)
   const [hasAccess, setHasAccess] = useState(false)

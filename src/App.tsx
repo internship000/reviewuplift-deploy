@@ -25,13 +25,13 @@ import BusinessForm from "./components/Business-form";
 import AccountPage from "./components/business/settings/account";
 import BusinessUsersPage from "./components/business/settings/businessusers";
 import LocationPage from "./components/business/settings/location";
-import AnalyticsPage from "./components/business/analytics/analytics";
-import AdminAnalyticsPage from "./components/admin/analytics/page";
+import AnalyticsPage from "./components/admin/analytics/page";
 
 import ReviewPage from "./components/business/review-link/review";
 import AdminRegistrationForm from "./components/admin/register/page";
 import BusinessDetailsPage from "./components/admin/business/[uid]";
 import SubscriptionPage from "./components/admin/subscriptions/[uid]";
+import AnalyticPage from "./components/business/analytics/analytics";
 
 function useScrollToHash() {
   const location = useLocation();
@@ -53,14 +53,13 @@ function useScrollToHash() {
 function AppRoutes() {
   useScrollToHash();
   const location = useLocation();
-  const currentPath = location.pathname;
 
-  // Hide navbar for /review, /feedback, or any single-segment slug like /demo123
-  const shouldHideNavbar = 
-    /^\/[^\/]+$/.test(currentPath) || 
-    ["/review", "/feedback"].includes(currentPath);
+const currentPath = location.pathname;
 
-  return (
+// Hide navbar for /review, /feedback, or any single-segment slug like /demo123
+const shouldHideNavbar = /^\/[^\/]+$/.test(currentPath) || ["/review", "/feedback"].includes(currentPath);
+
+return (
     <>
       {!shouldHideNavbar && <Navbar />}
 
@@ -74,28 +73,23 @@ function AppRoutes() {
         <Route path="/payment" element={<PaymentPage />} />
         <Route path="/admin" element={<BusinessForm />} />
         <Route path="/businessform" element={<BusinessForm />} />
-        
-        {/* Business Routes */}
         <Route path="/components/business/dashboard" element={<BusinessDashboard />} />
         <Route path="/components/business/reviews" element={<BusinessReviews />} />
         <Route path="/components/business/review-link" element={<ReviewLinkPage />} />
-        <Route path="/components/business/analytics" element={<AnalyticsPage />} />
+
+        <Route path="/components/business/analytics" element={<AnalyticPage />} />
+
+
         <Route path="/components/business/settings/account" element={<AccountPage />} />
         <Route path="/components/business/settings/businessusers" element={<BusinessUsersPage />} />
         <Route path="/components/business/settings/location" element={<LocationPage />} />
-        
-        {/* Admin Routes */}
         <Route path="/components/admin/dashboard" element={<AdminDashboard />} />
         <Route path="/components/admin/businesses" element={<BusinessesPage />} />
         <Route path="/components/admin/users" element={<UsersPage />} />
         <Route path="/components/admin/register" element={<AdminRegistrationForm />} />
-        <Route path="/components/admin/analytics" element={<AdminAnalyticsPage />} />
-        
-        {/* Dynamic Routes */}
+        <Route path="/components/admin/analytics" element={<AnalyticsPage />} />
         <Route path="/admin/businesses/:uid" element={<BusinessDetailsPage params={{ uid: "" }} />} />
         <Route path="/admin/subscriptions/:uid" element={<SubscriptionPage params={{ uid: "" }} />} />
-        
-        {/* Utility Routes */}
         <Route path="/sidebar" element={<Sidebar />} />
         <Route path="/review" element={<ReviewPage />} />
         <Route path="/:businessSlug" element={<ReviewPage />} />
