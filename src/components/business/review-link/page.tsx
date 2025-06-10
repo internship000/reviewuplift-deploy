@@ -145,7 +145,7 @@ useEffect(() => {
             const slug = finalBusinessName 
               ? finalBusinessName.toLowerCase().replace(/\s+/g, '-')
               : 'your-business';
-            reviewUrl = `https://go.reviewuplift.com/${slug}`;
+reviewUrl = `https://reviewuplift-deploy.vercel.app/${slug}`;
           }
           setReviewLinkUrl(reviewUrl);
           setTempBusinessSlug(reviewUrl.replace('https://go.reviewuplift.com/', ''));
@@ -154,7 +154,7 @@ useEffect(() => {
           const slug = businessNameFromInfo 
             ? businessNameFromInfo.toLowerCase().replace(/\s+/g, '-')
             : 'your-business';
-          setReviewLinkUrl(`https://go.reviewuplift.com/${slug}`);
+setReviewLinkUrl(`https://reviewuplift-deploy.vercel.app/${slug}`);
           setTempBusinessSlug(slug);
           setBusinessName(businessNameFromInfo || "");
           setTempBusinessName(businessNameFromInfo || "");
@@ -213,7 +213,7 @@ useEffect(() => {
 
   const handleUrlEdit = () => {
     if (isEditingUrl) {
-      const newUrl = `https://go.reviewuplift.com/${tempBusinessSlug}`
+const newUrl = `https://reviewuplift-deploy.vercel.app/${tempBusinessSlug}`
       setReviewLinkUrl(newUrl)
     }
     setIsEditingUrl(!isEditingUrl)
@@ -518,7 +518,7 @@ useEffect(() => {
                   <CardHeader className="bg-gradient-to-r from-orange-50 to-white rounded-t-lg">
                     <div className="flex justify-between items-center">
                       <CardTitle className="text-xl font-bold text-orange-800">Edit Review Link URL</CardTitle>
-                      <Button
+                      {/* <Button
                         variant="ghost"
                         size="sm"
                         onClick={handleUrlEdit}
@@ -527,7 +527,7 @@ useEffect(() => {
                       >
                         <Edit className="h-4 w-4 mr-2 group-hover:text-orange-600" aria-hidden="true" />
                         {isEditingUrl ? "Save" : "Edit"}
-                      </Button>
+                      </Button> */}
                     </div>
                     <CardDescription>This is the URL you'll share with customers to collect reviews</CardDescription>
                   </CardHeader>
@@ -535,7 +535,7 @@ useEffect(() => {
                     {isEditingUrl ? (
                       <div className="space-y-4">
                         <div className="flex items-center">
-                          <span className="whitespace-nowrap mr-2">https://go.reviewuplift.com/</span>
+<span className="whitespace-nowrap mr-2">https://reviewuplift-deploy.vercel.app/</span>
                           <Input
                             value={tempBusinessSlug}
                             onChange={(e) => setTempBusinessSlug(e.target.value)}
@@ -561,15 +561,7 @@ useEffect(() => {
                               Test Link
                             </a>
                           </Button>
-                          <Button 
-                            variant="outline" 
-                            size="sm" 
-                            onClick={navigateToPreviewPage}
-                            aria-label="View full preview"
-                            className="border-orange-200 hover:bg-orange-50"
-                          >
-                            Preview
-                          </Button>
+                         
                         </div>
                       </div>
                     )}
